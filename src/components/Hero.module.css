@@ -1,0 +1,163 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.bgPattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.circle1 {
+  position: absolute;
+  top: 10%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--sage-light) 0%, transparent 70%);
+}
+
+.circle2 {
+  position: absolute;
+  bottom: 20%;
+  left: -15%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 167, 125, 0.15) 0%, transparent 70%);
+}
+
+.circle3 {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 132, 124, 0.1) 0%, transparent 70%);
+}
+
+.content {
+  text-align: center;
+  max-width: 900px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.welcome {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.headline {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 500;
+  color: var(--primary);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em;
+  line-height: 1.1;
+}
+
+.word {
+  display: inline-block;
+}
+
+.subheadline {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.cta {
+  margin-top: 1rem;
+}
+
+.ctaBtn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--primary);
+  color: var(--surface);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ctaBtn:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(212, 132, 124, 0.3);
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scrollLine {
+  width: 1px;
+  background: var(--primary);
+  border-radius: 1px;
+}
+
+.flowerDecor {
+  position: absolute;
+  bottom: 15%;
+  right: 10%;
+  width: 80px;
+  height: 80px;
+  opacity: 0.7;
+}
+
+.flower {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 1.5rem;
+  }
+
+  .headline {
+    gap: 0.3em;
+  }
+
+  .subheadline {
+    font-size: 1rem;
+  }
+
+  .circle1, .circle2, .circle3 {
+    transform: scale(0.6);
+  }
+
+  .flowerDecor {
+    width: 50px;
+    height: 50px;
+    right: 5%;
+    bottom: 20%;
+  }
+}

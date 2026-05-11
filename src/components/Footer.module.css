@@ -1,0 +1,110 @@
+.footer {
+  background: var(--primary);
+  color: var(--surface);
+  padding: 5rem 2rem 2rem;
+}
+
+.quoteWrapper {
+  max-width: 700px;
+  margin: 0 auto 4rem;
+  text-align: center;
+  position: relative;
+  padding-top: 2rem;
+}
+
+.quoteIcon {
+  width: 32px;
+  height: 32px;
+  fill: var(--secondary);
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--surface);
+  margin-bottom: 1rem;
+}
+
+.cite {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  color: var(--secondary);
+}
+
+.bottom {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.separator {
+  color: var(--secondary);
+}
+
+.social {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.socialLink {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: var(--surface);
+  transition: background 0.3s;
+}
+
+.socialLink:hover {
+  background: var(--secondary);
+}
+
+.socialLink svg {
+  width: 20px;
+  height: 20px;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 4rem 1.5rem 1.5rem;
+  }
+
+  .location {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .separator {
+    display: none;
+  }
+}
