@@ -99,7 +99,29 @@
   transform: none;
 }
 
+.select + .floatingLabel {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.select + .floatingLabel.hasValue,
+.formGroup:has(.select:not([value=""])) .select + .floatingLabel {
+  top: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
 .formGroup.focused .floatingLabel {
+  top: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.formGroup.focused .select + .floatingLabel {
   top: 0.6rem;
   font-size: 0.7rem;
   letter-spacing: 0.05em;

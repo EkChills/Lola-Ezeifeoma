@@ -6,7 +6,6 @@ import { Send, CheckCircle } from 'lucide-react';
 import styles from './Contact.module.css';
 
 const audienceOptions = [
-  { value: '', label: 'Select...' },
   { value: 'parent', label: 'Parent' },
   { value: 'teen', label: 'Teen' },
   { value: 'woman', label: 'Woman' },
@@ -14,7 +13,6 @@ const audienceOptions = [
 ];
 
 const inquiryOptions = [
-  { value: '', label: 'Select...' },
   { value: 'speaking', label: 'Speaking or Teaching Inquiry' },
   { value: 'book', label: 'Book Question' },
   { value: 'testimony', label: 'Personal Testimony' },
@@ -33,10 +31,6 @@ export default function Contact() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFocused, setIsFocused] = useState<string | null>(null);
-  const [hasValue, setHasValue] = useState<{ [key: string]: boolean }>({
-    audience: false,
-    inquiry: false,
-  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,46 +106,38 @@ export default function Contact() {
               </div>
 
               <div className={styles.formRow}>
-                <div className={`${styles.formGroup} ${isFocused === 'audience' || hasValue.audience ? styles.focused : ''}`}>
+                <div className={styles.formGroup}>
                   <select
                     id="audience"
                     name="audience"
                     value={formState.audience}
-                    onChange={(e) => {
-                      setFormState({ ...formState, audience: e.target.value });
-                      setHasValue({ ...hasValue, audience: !!e.target.value });
-                    }}
-                    onFocus={() => setIsFocused('audience')}
-                    onBlur={() => setIsFocused(null)}
+                    onChange={(e) => setFormState({ ...formState, audience: e.target.value })}
                     required
                     className={styles.select}
                   >
+                    <option value="" disabled hidden>Select...</option>
                     {audienceOptions.map((opt) => (
                       <option key={opt.value} value={opt.value}>{opt.label}</option>
                     ))}
                   </select>
-                  <label htmlFor="audience" className={styles.floatingLabel}>I am reaching out as a...</label>
+                  <label htmlFor="audience" className={`${styles.floatingLabel} ${formState.audience ? styles.hasValue : ''}`}>I am reaching out as a...</label>
                 </div>
 
-                <div className={`${styles.formGroup} ${isFocused === 'inquiry' || hasValue.inquiry ? styles.focused : ''}`}>
+                <div className={styles.formGroup}>
                   <select
                     id="inquiry"
                     name="inquiry"
                     value={formState.inquiry}
-                    onChange={(e) => {
-                      setFormState({ ...formState, inquiry: e.target.value });
-                      setHasValue({ ...hasValue, inquiry: !!e.target.value });
-                    }}
-                    onFocus={() => setIsFocused('inquiry')}
-                    onBlur={() => setIsFocused(null)}
+                    onChange={(e) => setFormState({ ...formState, inquiry: e.target.value })}
                     required
                     className={styles.select}
                   >
+                    <option value="" disabled hidden>Select...</option>
                     {inquiryOptions.map((opt) => (
                       <option key={opt.value} value={opt.value}>{opt.label}</option>
                     ))}
                   </select>
-                  <label htmlFor="inquiry" className={styles.floatingLabel}>How can I serve you today?</label>
+                  <label htmlFor="inquiry" className={`${styles.floatingLabel} ${formState.inquiry ? styles.hasValue : ''}`}>How can I serve you today?</label>
                 </div>
               </div>
 
