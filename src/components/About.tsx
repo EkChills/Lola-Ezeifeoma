@@ -19,8 +19,22 @@ export default function About() {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className={styles.imagePlaceholder}>
-            <div className={styles.imageInner}>
+          <img
+            src="/author_lola.jpg"
+            alt="Lola Ezeifeoma"
+            className={styles.authorImage}
+            onError={(e) => {
+              const img = e.target as HTMLImageElement;
+              img.style.display = 'none';
+              const parent = img.parentElement;
+              if (parent) {
+                const placeholder = parent.querySelector('.placeholder');
+                if (placeholder) (placeholder as HTMLElement).style.display = 'flex';
+              }
+            }}
+          />
+          <div className={styles.imagePlaceholder} style={{ display: 'none' }}>
+            <div className="placeholder" style={{ display: 'none', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
               <span>Photo Coming Soon</span>
             </div>
           </div>

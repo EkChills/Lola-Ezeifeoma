@@ -18,10 +18,11 @@ export default function Navigation() {
   }, [scrollY]);
 
   const navItems = [
-    { label: 'Home', href: '#hero' },
-    { label: 'About', href: '#about' },
-    { label: 'Books', href: '#books' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/#hero' },
+    { label: 'About', href: '/#about' },
+    { label: 'Books', href: '/#books' },
+    { label: 'Blog', href: '/#blog' },
+    { label: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -32,7 +33,7 @@ export default function Navigation() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className={styles.container}>
-        <a href="#hero" className={styles.logo}>
+        <a href="/#hero" className={styles.logo}>
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -84,7 +85,11 @@ export default function Navigation() {
               <a
                 href={item.href}
                 className={styles.mobileNavLink}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  window.location.href = item.href;
+                }}
               >
                 {item.label}
               </a>

@@ -92,6 +92,11 @@
   color: var(--text);
   display: block;
   padding: 0.5rem 0;
+  transition: color 0.3s;
+}
+
+.mobileNavLink:hover {
+  color: var(--primary);
 }
 
 @media (max-width: 768px) {

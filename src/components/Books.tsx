@@ -12,6 +12,7 @@ const books = [
     perfectFor: "Christian teens, parents, youth workers, and mentors",
     availableOn: ["Amazon", "Selar"],
     color: "var(--primary)",
+    image: "/Unravelling_Sex_and_the_Bible_Cover.png",
   },
   {
     title: "Dear Daughter: A Letter from the Heart of Jesus",
@@ -20,6 +21,7 @@ const books = [
     perfectFor: "Women seeking deeper intimacy with Christ",
     availableOn: ["Selar"],
     color: "var(--accent)",
+    image: "/Dear_Daughter_Front_Cover.jpg",
   },
   {
     title: "YouVersion Devotionals",
@@ -28,7 +30,7 @@ const books = [
     perfectFor: "Anyone seeking daily spiritual nourishment",
     availableOn: ["YouVersion"],
     color: "var(--secondary)",
-      },
+  },
 ];
 
 export default function Books() {
@@ -66,6 +68,11 @@ export default function Books() {
               }}
               whileHover={{ y: -8 }}
             >
+              {book.image && (
+                <div className={styles.bookImageWrapper}>
+                  <img src={book.image} alt={book.title} className={styles.bookImage} />
+                </div>
+              )}
               <div className={styles.cardAccent} style={{ background: book.color }} />
               <div className={styles.cardContent}>
                 <h3 className={styles.bookTitle}>{book.title}</h3>
