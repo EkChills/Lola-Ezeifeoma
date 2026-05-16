@@ -69,10 +69,7 @@ export default function Navigation() {
       </div>
 
       <motion.div
-        className={styles.mobileMenu}
-        initial={false}
-        animate={isMobileMenuOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-        transition={{ duration: 0.3 }}
+        className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ''}`}
       >
         <ul className={styles.mobileNavLinks}>
           {navItems.map((item, i) => (

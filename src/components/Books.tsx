@@ -11,6 +11,10 @@ const books = [
     details: "In a world full of confusion about sex, identity, and self-worth, this book speaks clearly. Written with love and without judgment by a mother with teenage children.",
     perfectFor: "Christian teens, parents, youth workers, and mentors",
     availableOn: ["Amazon", "Selar"],
+    links: {
+      selar: "https://Selar.co/unravellingsexandthebible",
+      amazon: "https://a.co/d/eJ7Vg6e",
+    },
     color: "var(--primary)",
     image: "/Unravelling_Sex_and_the_Bible_Cover.png",
   },
@@ -20,6 +24,9 @@ const books = [
     details: "Dear Daughter is not your regular book; it is a meditation with Jesus. Together, we walk through scenes involving the woman at the well, the disciples, and the people of Samaria.",
     perfectFor: "Women seeking deeper intimacy with Christ",
     availableOn: ["Selar"],
+    links: {
+      selar: "https://selar.com/omolola-author",
+    },
     color: "var(--accent)",
     image: "/Dear_Daughter_Front_Cover.jpg",
   },
@@ -83,11 +90,17 @@ export default function Books() {
                     <span className={styles.metaLabel}>Perfect for:</span> {book.perfectFor}
                   </p>
                   <div className={styles.availableOn}>
-                    {book.availableOn.map((platform) => (
-                      <span key={platform} className={styles.platform}>
-                        {platform}
-                      </span>
-                    ))}
+                    {book.availableOn.map((platform) => {
+                      const key = platform.toLowerCase() as 'selar' | 'amazon';
+                      const link = book.links?.[key];
+                      const Label = link ? 'a' : 'span';
+                      const linkProps = link ? { href: link, target: '_blank', rel: 'noopener noreferrer' } : {};
+                      return (
+                        <Label key={platform} {...linkProps} className={link ? styles.platform : styles.platformTag}>
+                          {platform}
+                        </Label>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

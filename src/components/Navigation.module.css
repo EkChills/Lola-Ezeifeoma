@@ -76,6 +76,14 @@
 .mobileMenu {
   overflow: hidden;
   background: var(--surface);
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.mobileMenu.open {
+  max-height: 500px;
+  opacity: 1;
 }
 
 .mobileNavLinks {
