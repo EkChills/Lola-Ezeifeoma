@@ -25,7 +25,7 @@ const books = [
     perfectFor: "Women seeking deeper intimacy with Christ",
     availableOn: ["Selar"],
     links: {
-      selar: "https://selar.com/omolola-author",
+      selar: "https://Selar.co/8cpo",
     },
     color: "var(--accent)",
     image: "/Dear_Daughter_Front_Cover.jpg",
@@ -36,6 +36,9 @@ const books = [
     details: "Daily devotionals designed to spark conversation and deep reflection on God's Word.",
     perfectFor: "Anyone seeking daily spiritual nourishment",
     availableOn: ["YouVersion"],
+    links: {
+      youversion: "https://bible.us/r/JJz",
+    },
     color: "var(--secondary)",
   },
 ];
@@ -91,7 +94,7 @@ export default function Books() {
                   </p>
                   <div className={styles.availableOn}>
                     {book.availableOn.map((platform) => {
-                      const key = platform.toLowerCase() as 'selar' | 'amazon';
+                      const key = platform.toLowerCase() as 'selar' | 'amazon' | 'youversion';
                       const link = book.links?.[key];
                       const Label = link ? 'a' : 'span';
                       const linkProps = link ? { href: link, target: '_blank', rel: 'noopener noreferrer' } : {};
