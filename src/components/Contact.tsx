@@ -1,9 +1,10 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useActionState, startTransition } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 import styles from './Contact.module.css';
+import { sendContactMessage, type ContactFormState } from '@/app/actions';
 
 const audienceOptions = [
   { value: 'parent', label: 'Parent' },
@@ -29,12 +30,18 @@ export default function Contact() {
     inquiry: '',
     message: '',
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isFocused, setIsFocused] = useState<string | null>(null);
+  const [state, formAction, isPending] = useActionState<ContactFormState, FormData>(
+    async (_prevState, formData) => sendContactMessage(formData),
+    { success: false }
+  );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    const formData = new FormData(e.currentTarget);
+    startTransition(() => {
+      formAction(formData);
+    });
   };
 
   return (
@@ -60,7 +67,7 @@ export default function Contact() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          {isSubmitted ? (
+          {state.success ? (
             <motion.div
               className={styles.successMessage}
               initial={{ scale: 0.8, opacity: 0 }}
@@ -86,7 +93,7 @@ export default function Contact() {
                     required
                     className={styles.input}
                   />
-                  <label htmlFor="name" className={styles.floatingLabel}>Name</label>
+                  <label htmlFor="name" className={`${styles.floatingLabel} ${formState.name ? styles.hasValue : ''}`}>Name</label>
                 </div>
 
                 <div className={`${styles.formGroup} ${isFocused === 'email' ? styles.focused : ''}`}>
@@ -101,7 +108,7 @@ export default function Contact() {
                     required
                     className={styles.input}
                   />
-                  <label htmlFor="email" className={styles.floatingLabel}>Email Address</label>
+                  <label htmlFor="email" className={`${styles.floatingLabel} ${formState.email ? styles.hasValue : ''}`}>Email Address</label>
                 </div>
               </div>
 
@@ -153,16 +160,19 @@ export default function Contact() {
                   className={styles.textarea}
                   rows={5}
                 />
-                <label htmlFor="message" className={styles.floatingLabel}>Your Message</label>
+                <label htmlFor="message" className={`${styles.floatingLabel} ${formState.message ? styles.hasValue : ''}`}>Your Message</label>
               </div>
+
+              {state.error && <p className={styles.errorMessage}>{state.error}</p>}
 
               <motion.button
                 type="submit"
                 className={styles.submitBtn}
+                disabled={isPending}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span>Send Message</span>
+                <span>{isPending ? 'Sending...' : 'Send Message'}</span>
                 <Send size={18} />
               </motion.button>
             </form>

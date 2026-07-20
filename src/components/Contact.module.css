@@ -104,6 +104,7 @@
   transform: translateY(-50%);
 }
 
+.floatingLabel.hasValue,
 .select + .floatingLabel.hasValue,
 .formGroup:has(.select:not([value=""])) .select + .floatingLabel {
   top: 0.6rem;
@@ -111,6 +112,7 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--primary);
+  transform: none;
 }
 
 .formGroup.focused .floatingLabel {
@@ -119,6 +121,7 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--primary);
+  transform: none;
 }
 
 .formGroup.focused .select + .floatingLabel {
@@ -162,6 +165,17 @@
 
 .submitBtn:hover {
   background: var(--accent);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  color: #b3261e;
+  font-size: 0.9rem;
+  margin: -0.75rem 0 0;
 }
 
 .successMessage {
